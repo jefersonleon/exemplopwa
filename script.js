@@ -143,3 +143,79 @@ const cacheData = async () => {
 if (navigator.onLine) {
     cacheData();
 }
+
+// Diagnóstico Completo
+console.log('=== DIAGNÓSTICO PWA COMPLETO ===');
+
+// 1. Verificar arquivos físicos
+async function checkFiles() {
+    const files = [
+        '/index.html',
+        '/style.css',
+        '/script.js',
+        '/manifest.json',
+        '/sw.js',
+        '/icons/icon-72x72.png',
+        '/icons/icon-144x144.png',
+        '/icons/icon-192x192.png'
+    ];
+    
+    for (const file of files) {
+        try {
+            const response = await fetch(file, { method: 'HEAD' });
+            console.log(`${response.ok ? '✅' : '❌'} ${file} - ${response.status}`);
+        } catch (e) {
+            console.log(`❌ ${file} - Erro: ${e.message}`);
+        }
+    }
+}
+
+// 2. Verificar Service Worker
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(registrations => {
+        if (registrations.length > 0) {
+            console.log('✅ Service Workers registrados:', registrations.length);
+            registrations.forEach((reg, i) => {
+                console.log(`  ${i+1}. Scope: ${reg.scope}`);
+                console.log(`     Ativo: ${!!reg.active}`);
+                console.log(`     Instalando: ${!!reg.installing}`);
+                console.log(`     Esperando: ${!!reg.waiting}`);
+            });
+        } else {
+            console.log('❌ Nenhum Service Worker registrado');
+        }
+    });
+}
+
+// 3. Verificar Cache
+caches.keys().then(keys => {
+    console.log('📦 Caches encontrados:', keys.length ? keys.join(', ') : 'Nenhum');
+    keys.forEach(key => {
+        caches.open(key).then(cache => {
+            cache.keys().then(requests => {
+                console.log(`  ${key}: ${requests.length} arquivos em cache`);
+            });
+        });
+    });
+});
+
+// 4. Teste de Instalação
+window.addEventListener('beforeinstallprompt', (e) => {
+    console.log('✅ Evento beforeinstallprompt disparado! O PWA pode ser instalado');
+    // Previne que o prompt automático apareça
+    e.preventDefault();
+    // Aqui você pode mostrar seu botão personalizado
+    deferredPrompt = e;
+});
+
+// 5. Verificar modo atual
+if (window.matchMedia('(display-mode: standalone)').matches) {
+    console.log('✅ App rodando em modo standalone (instalado)');
+} else if (window.matchMedia('(display-mode: minimal-ui)').matches) {
+    console.log('✅ App rodando em minimal-ui');
+} else {
+    console.log('ℹ️ App rodando no navegador');
+}
+
+checkFiles();
+console.log('=== FIM DIAGNÓSTICO ===');
