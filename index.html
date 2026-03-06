@@ -15,7 +15,7 @@
     <link rel="manifest" href="manifest.json">
 
     <!-- CSS externo -->
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style.css?v=2">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="./icons/favicon.png">
@@ -161,8 +161,21 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
+                // Desregistra Service Workers antigos da pasta js/ para evitar conflito de cache
+                navigator.serviceWorker.getRegistrations().then(registrations => {
+                    for (let reg of registrations) {
+                        if (reg.active && reg.active.scriptURL.includes('/js/sw.js')) {
+                            reg.unregister().then(() => console.log('SW antigo removido.'));
+                        }
+                    }
+                });
+
+                // Registra o novo na raiz e força a busca por atualizações
                 navigator.serviceWorker.register('./sw.js')
-                    .then(reg => console.log('SW registrado'))
+                    .then(reg => {
+                        console.log('SW registrado');
+                        reg.update();
+                    })
                     .catch(err => console.log('SW erro:', err));
             });
         }
