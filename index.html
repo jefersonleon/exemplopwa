@@ -7,7 +7,7 @@
     <title>Café Gourmet - PWA</title>
 
     <!-- Meta tags PWA -->
-    <meta name="theme-color" content="#6f4e37">
+    <meta name="theme-color" content="#E65100">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
@@ -19,16 +19,21 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="./icons/favicon.png">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <div id="statusBar" class="status-bar" style="display: none;"></div>
+
     <header class="header">
         <nav class="nav-container">
             <div class="logo">☕ Café Gourmet</div>
             <button class="hamburger">☰</button>
             <ul class="nav-menu">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#sobre">Sobre Nós</a></li>
                 <li><a href="#cardapio">Cardápio</a></li>
             </ul>
         </nav>
@@ -36,18 +41,117 @@
 
     <main>
         <section id="home" class="hero">
-            <h1>Café Artesanal</h1>
-            <p>O melhor café da região</p>
-            <button class="btn-install" id="installBtn">Instalar App</button>
+            <div class="hero-content">
+                <h1>Desperte seus Sentidos</h1>
+                <p>O café artesanal mais vibrante e prestigiado da cidade. Sabor em cada gota.</p>
+                <div class="hero-buttons">
+                    <a href="#cardapio" class="btn-primary">Ver Cardápio</a>
+                    <button class="btn-install" id="installBtn">Instalar App</button>
+                </div>
+            </div>
         </section>
 
         <section id="sobre" class="sobre">
+            <div class="container sobre-grid">
+                <div class="sobre-text">
+                    <h2>Nossa História</h2>
+                    <p>Fundado em 2010, o <strong>Café Gourmet</strong> nasceu da paixão por grãos selecionados e da
+                        vontade de criar um espaço onde a comunidade pudesse se reunir, relaxar e apreciar o verdadeiro
+                        sabor do café brasileiro.</p>
+                    <p>Trabalhamos exclusivamente com pequenos produtores, garantindo uma torra fresca e um aroma
+                        inconfundível. Nosso ambiente foi pensado para ser o seu refúgio urbano: acolhedor, moderno e
+                        cheio de vida.</p>
+                    <ul class="sobre-features">
+                        <li>🌱 Grãos 100% Arábica Orgânicos</li>
+                        <li>🔥 Torra artesanal feita na casa</li>
+                        <li>💻 Wi-Fi de alta velocidade e co-working</li>
+                    </ul>
+                </div>
+                <div class="sobre-image">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=800"
+                        alt="Interior do nosso café">
+                </div>
+            </div>
+        </section>
+
+        <section id="cardapio" class="cardapio">
             <div class="container">
-                <h2>Sobre Nós</h2>
-                <p>Café desde 2010</p>
+                <div class="section-header">
+                    <h2>Nosso Cardápio</h2>
+                    <p>Clássicos e especialidades preparadas com maestria.</p>
+                </div>
+                <div id="cardapioGrid" class="cardapio-grid">
+                    <div class="cardapio-card">
+                        <img src="https://images.unsplash.com/photo-1610889556528-9a770e32642f?auto=format&fit=crop&q=80&w=400"
+                            alt="Expresso">
+                        <div class="cardapio-card-content">
+                            <h3>Expresso Italiano</h3>
+                            <p>Café puro, denso e encorpado, extraído sob pressão ideal com grãos 100% arábica.</p>
+                            <span class="preco">R$ 8,00</span>
+                        </div>
+                    </div>
+                    <div class="cardapio-card">
+                        <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&q=80&w=400"
+                            alt="Cappuccino">
+                        <div class="cardapio-card-content">
+                            <h3>Cappuccino Clássico</h3>
+                            <p>Equilíbrio perfeito entre expresso, leite vaporizado cremoso e um toque de canela.</p>
+                            <span class="preco">R$ 14,00</span>
+                        </div>
+                    </div>
+                    <div class="cardapio-card">
+                        <img src="https://images.unsplash.com/photo-1558401391-7899b4bd5bbf?auto=format&fit=crop&q=80&w=400"
+                            alt="Latte">
+                        <div class="cardapio-card-content">
+                            <h3>Latte Macchiato</h3>
+                            <p>Dose suave de expresso mergulhada em uma generosa camada de leite quente e espuma.</p>
+                            <span class="preco">R$ 13,00</span>
+                        </div>
+                    </div>
+                    <div class="cardapio-card">
+                        <img src="https://images.unsplash.com/photo-1576223611894-0de2e584fdf5?auto=format&fit=crop&q=80&w=400"
+                            alt="Mocha">
+                        <div class="cardapio-card-content">
+                            <h3>Mocaccino Especial</h3>
+                            <p>A irresistível combinação de expresso, calda artesanal de chocolate belga e leite
+                                vaporizado.</p>
+                            <span class="preco">R$ 16,00</span>
+                        </div>
+                    </div>
+                    <div class="cardapio-card">
+                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400"
+                            alt="Cold Brew">
+                        <div class="cardapio-card-content">
+                            <h3>Cold Brew</h3>
+                            <p>Café extraído a frio por 18 horas. Refrescante, menos ácido e naturalmente doce.</p>
+                            <span class="preco">R$ 15,00</span>
+                        </div>
+                    </div>
+                    <div class="cardapio-card">
+                        <img src="https://images.unsplash.com/photo-1626379616459-b1ff250269f8?auto=format&fit=crop&q=80&w=400"
+                            alt="Croissant">
+                        <div class="cardapio-card-content">
+                            <h3>Croissant Amanteigado</h3>
+                            <p>Massa folhada, leve e crocante. Assado diariamente. Combinação perfeita para seu café.
+                            </p>
+                            <span class="preco">R$ 12,00</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="logo footer-logo">☕ Café Gourmet</div>
+            <p>&copy; 2026 Café Gourmet. Todos os direitos reservados.</p>
+            <div class="social-links">
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+            </div>
+        </div>
+    </footer>
 
     <!-- Scripts externos -->
     <script src="./js/script.js"></script>

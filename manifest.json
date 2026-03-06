@@ -4,8 +4,8 @@
     "description": "O melhor café artesanal da região",
     "start_url": "./",
     "display": "standalone",
-    "background_color": "#6f4e37",
-    "theme_color": "#6f4e37",
+    "background_color": "#E65100",
+    "theme_color": "#E65100",
     "orientation": "portrait",
     "scope": "./",
     "icons": [
