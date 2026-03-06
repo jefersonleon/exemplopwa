@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gerar Ícones</title>
+</head>
+<body>
+    <canvas id="canvas" width="512" height="512" style="display:none"></canvas>
+    <script>
+        const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        sizes.forEach(size => {
+            canvas.width = size;
+            canvas.height = size;
+            
+            // Fundo
+            ctx.fillStyle = '#6f4e37';
+            ctx.fillRect(0, 0, size, size);
+            
+            // Xícara de café simples
+            ctx.fillStyle = '#c7a17b';
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size*0.3, 0, Math.PI*2);
+            ctx.fill();
+            
+            // Salvar como PNG
+            const link = document.createElement('a');
+            link.download = `icon-${size}x${size}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        });
+    </script>
+    <p>Ícones gerados! Verifique sua pasta de downloads e mova para a pasta /icons</p>
+</body>
+</html>
