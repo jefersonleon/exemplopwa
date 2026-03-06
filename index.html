@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Café Gourmet - PWA</title>
-    
+
     <!-- Meta tags PWA -->
     <meta name="theme-color" content="#6f4e37">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    
+
     <!-- Manifest -->
     <link rel="manifest" href="manifest.json">
-    
+
     <!-- CSS externo -->
-    <link rel="stylesheet" href="css/style.css">
-    
+    <link rel="stylesheet" href="./css/style.css">
+
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="icons/favicon.png">
+    <link rel="icon" type="image/png" href="./icons/favicon.png">
 </head>
+
 <body>
     <header class="header">
         <nav class="nav-container">
@@ -48,18 +50,19 @@
     </main>
 
     <!-- Scripts externos -->
-    <script src="js/app.js"></script>
-    <script src="js/install.js"></script>
-    
+    <script src="./js/script.js"></script>
+    <script src="./js/install.js"></script>
+
     <!-- Service Worker Registration -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
+                navigator.serviceWorker.register('./sw.js')
                     .then(reg => console.log('SW registrado'))
                     .catch(err => console.log('SW erro:', err));
             });
         }
     </script>
 </body>
+
 </html>
